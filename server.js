@@ -8,6 +8,9 @@ const path = require("path");
 // Dynamic Port
 const PORT = process.env.PORT || 5500;
 
+// Assests for MIME type accrordingly setting Content Type
+app.use(express.static("public"));
+
 // routes
 app.get("/", (req, res) => {
   res.render("home");
