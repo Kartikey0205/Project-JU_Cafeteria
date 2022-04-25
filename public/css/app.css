@@ -1,4 +1,45 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
-  background-color: aliceblue;
-  font-family: "Satisfy", cursive;
+  font-family: "Merienda", cursive;
+  -webkit-font-smoothing: antialiased;
+  color: #232323;
+}
+
+nav li:last-child a {
+  background: #009b72;
+}
+nav li:last-child a:hover {
+  opacity: 1;
+  background: #007556;
+}
+
+nav li a {
+  opacity: 0.8;
+  transition: all 0.3s ease-in-out;
+}
+nav li a:hover {
+  opacity: 1;
+  color: #046865;
+  border-bottom: 2px solid #046865;
+}
+
+.myImg {
+  border-radius: 50%;
+}
+
+.part1 {
+  text-shadow: 2px 1px 3px #046865;
+}
+
+.part2 {
+  text-align: -webkit-center;
+}
+
+section.hero {
+  background: #f8f8f8;
 }
