@@ -1,4 +1,81 @@
+@import "./variables";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 body {
-  background-color: aliceblue;
-  font-family: "Satisfy", cursive;
+  font-family: "Merienda", cursive;
+  -webkit-font-smoothing: antialiased;
+  color: $dark;
+}
+
+// Navbar
+nav li:last-child a {
+  background: $btn-color;
+  &:hover {
+    opacity: 1;
+
+    background: $btn-hover;
+  }
+}
+
+nav li a {
+  opacity: 0.8;
+  transition: $smooth;
+
+  &:hover {
+    opacity: 1;
+    color: $backgound-color;
+    border-bottom: 2px solid $backgound-color;
+  }
+}
+
+// Home Section
+.myImg {
+  border-radius: 50%;
+}
+.part1 {
+  text-shadow: 2px 1px 3px $backgound-color;
+}
+.part2 {
+  // background-color: red;
+  text-align: -webkit-center;
+}
+
+section.hero {
+  // background: $secondary;
+  background-image: url("/img/bgHome.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  height: 100vh;
+}
+
+.myBtn {
+  border: 1px solid $backgound-color;
+  background: $btn-color;
+  color: $pure;
+  transition: $smooth;
+  &:hover {
+    background: $btn-hover;
+    border-color: $pure;
+  }
+}
+// Menus
+
+.size {
+  background: $secondary;
+}
+
+.add-to-cart {
+  border: 1px solid $backgound-color;
+  background: $btn-color;
+  color: $pure;
+  transition: $smooth;
+  &:hover {
+    background: $btn-hover;
+    border-color: $pure;
+  }
 }

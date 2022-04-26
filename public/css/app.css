@@ -41,5 +41,35 @@ nav li a:hover {
 }
 
 section.hero {
+  background-image: url("/img/bgHome.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  height: 100vh;
+}
+
+.myBtn {
+  border: 1px solid #046865;
+  background: #009b72;
+  color: #fff;
+  transition: all 0.3s ease-in-out;
+}
+.myBtn:hover {
+  background: #007556;
+  border-color: #fff;
+}
+
+.size {
   background: #f8f8f8;
+}
+
+.add-to-cart {
+  border: 1px solid #046865;
+  background: #009b72;
+  color: #fff;
+  transition: all 0.3s ease-in-out;
+}
+.add-to-cart:hover {
+  background: #007556;
+  border-color: #fff;
 }
