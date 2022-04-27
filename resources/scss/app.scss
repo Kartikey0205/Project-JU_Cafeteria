@@ -231,6 +231,35 @@ section.hero {
 // Cart Style
 section.cart {
   background: $secondary;
+  min-height: calc(100vh - 215px);
+  transition: $smooth;
+
+  button {
+    border: 1px solid $backgound-color;
+    background: $btn-color;
+    transition: $smooth;
+    &:hover {
+      background: $btn-hover;
+      border-color: $pure;
+    }
+  }
+}
+
+// Login CSS
+section.login {
+  background: $secondary;
+  min-height: calc(100vh - 215px);
+  transition: $smooth;
+
+  form {
+    box-shadow: $shadow;
+  }
+  a {
+    color: $backgound-color;
+    &:hover {
+      color: $btn-hover;
+    }
+  }
   button {
     border: 1px solid $backgound-color;
     background: $btn-color;

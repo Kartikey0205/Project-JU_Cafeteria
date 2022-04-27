@@ -24,6 +24,14 @@ app.get("/", (req, res) => {
 app.get("/cart", (req, res) => {
   res.render("customer/cart");
 });
+
+app.get("/login", (req, res) => {
+  res.render("auth/login");
+});
+
+app.get("/register", (req, res) => {
+  res.render("auth/register");
+});
 // Listening to server
 app.listen(PORT, () => {
   console.log(`Server is running at ${PORT}`);

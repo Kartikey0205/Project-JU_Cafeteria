@@ -208,6 +208,8 @@ section.hero {
 
 section.cart {
   background: #f8f8f8;
+  min-height: calc(100vh - 215px);
+  transition: all 0.3s ease-in-out;
 }
 section.cart button {
   border: 1px solid #046865;
@@ -215,6 +217,30 @@ section.cart button {
   transition: all 0.3s ease-in-out;
 }
 section.cart button:hover {
+  background: #007556;
+  border-color: #fff;
+}
+
+section.login {
+  background: #f8f8f8;
+  min-height: calc(100vh - 215px);
+  transition: all 0.3s ease-in-out;
+}
+section.login form {
+  box-shadow: 0px 0px 6px 0px #046865;
+}
+section.login a {
+  color: #046865;
+}
+section.login a:hover {
+  color: #007556;
+}
+section.login button {
+  border: 1px solid #046865;
+  background: #009b72;
+  transition: all 0.3s ease-in-out;
+}
+section.login button:hover {
   background: #007556;
   border-color: #fff;
 }
