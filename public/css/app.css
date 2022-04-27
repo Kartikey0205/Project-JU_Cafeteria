@@ -205,3 +205,16 @@ section.hero {
   color: #046865;
   opacity: 0.9;
 }
+
+section.cart {
+  background: #f8f8f8;
+}
+section.cart button {
+  border: 1px solid #046865;
+  background: #009b72;
+  transition: all 0.3s ease-in-out;
+}
+section.cart button:hover {
+  background: #007556;
+  border-color: #fff;
+}

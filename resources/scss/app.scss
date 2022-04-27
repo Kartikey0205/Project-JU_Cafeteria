@@ -227,3 +227,17 @@ section.hero {
     opacity: 0.9;
   }
 }
+
+// Cart Style
+section.cart {
+  background: $secondary;
+  button {
+    border: 1px solid $backgound-color;
+    background: $btn-color;
+    transition: $smooth;
+    &:hover {
+      background: $btn-hover;
+      border-color: $pure;
+    }
+  }
+}
