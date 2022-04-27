@@ -1,9 +1,18 @@
+// import Menu
+
+const Menu = require("../../models/menu");
+
 function homeController() {
   // Using Factory Method
   return {
     //get home page
-    index(req, res) {
-      res.render("home");
+    async index(req, res) {
+      const allMenus = await Menu.find();
+
+      // console.log(allMenus);
+      return res.render("home", {
+        allMenus: allMenus,
+      });
     },
   };
 }
