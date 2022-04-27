@@ -12,12 +12,13 @@
       rel="stylesheet"
     />
     <script src="https://cdn.tailwindcss.com"></script>
+
     <link rel="stylesheet" href="/css/app.css" />
   </head>
   <body>
     <!-- Navbar -->
     <nav class="container mx-auto px-4 flex items-center justify-between py-2">
-      <div>
+      <div class="">
         <img
           class="w-1/2"
           src="/img/restaurant-logo.png"
@@ -49,27 +50,143 @@
     </nav>
 
     <!-- Home section -->
-    <section class="hero py-4">
-      <div class="container mx-auto px-6 flex items-center justify-between">
-        <div class="tracking-wider w-1/2 align-text-top part1 mx-6">
-          <h5 class="text-xl">
+    <section class="hero flex items-center justify-center">
+      <div>
+        <div class="mx-auto part1">
+          <h5 class="text-2xl ml-4 mb-2">
             <em>Are you Hungry?</em>
           </h5>
           <h1 class="text-6xl font-bold">Come on... Don't Wait!!</h1>
         </div>
-        <div class="w-1/2 p-8 part2">
+        <!-- <div class="w-1/2 p-8 part2">
           <img
             class="myImg w-96 h-96 shadow-lg shadow-green-900"
             src="/img/hero-2.jpg"
             alt="homeCafe-photo"
             srcset=""
           />
-        </div>
+        </div> -->
+        <button
+          class="myBtn mt-6 py-1.5 px-6 rounded-full flex items-center font-bold"
+        >
+          Order Now
+        </button>
       </div>
     </section>
 
     <!-- Menu Section -->
+    <section class="menu container mx-auto py-8 px-4">
+      <h1 class="text-2xl font-bold part1">All Menus</h1>
+      <div class="wrapper mt-6 p-2 grid grid-cols-4 gap-x-8 gap-y-10">
+        <!-- 1 item info -->
+        <div class="w-64">
+          <img
+            class="myImg h-40 mb-4 mx-auto"
+            src="/img/pizza.png"
+            alt="pizza"
+          />
+          <div class="text-center">
+            <h2 class="mb-4 text-lg">Margherita</h2>
+            <span class="size py-1 rounded-full uppercase text-xs"
+              >small
+              <div class="flex items-center justify-around mt-6">
+                <span class="font-bold text-lg">₹250</span>
+                <button
+                  class="add-to-cart py-1.5 px-6 rounded-full flex items-center font-bold"
+                >
+                  <span>+</span>
+                  <span class="ml-4">Add</span>
+                </button>
+              </div>
+            </span>
+          </div>
+        </div>
 
+        <!-- 2nd item info -->
+        <div class="w-64">
+          <img class="myImg h-40 mb-4 mx-auto" src="/img/L.jpg" alt="pizza" />
+          <div class="text-center">
+            <h2 class="mb-4 text-lg">Margherita</h2>
+            <span class="size py-1 rounded-full uppercase text-xs"
+              >small
+              <div class="flex items-center justify-around mt-6">
+                <span class="font-bold text-lg">₹250</span>
+                <button
+                  class="add-to-cart py-1.5 px-6 rounded-full flex items-center font-bold"
+                >
+                  <span>+</span>
+                  <span class="ml-4">Add</span>
+                </button>
+              </div>
+            </span>
+          </div>
+        </div>
+
+        <!-- 3rd item info -->
+        <div class="w-64">
+          <img class="myImg h-40 mb-4 mx-auto" src="/img/SS.jpg" alt="pizza" />
+          <div class="text-center">
+            <h2 class="mb-4 text-lg">Margherita</h2>
+            <span class="size py-1 rounded-full uppercase text-xs"
+              >small
+              <div class="flex items-center justify-around mt-6">
+                <span class="font-bold text-lg">₹250</span>
+                <button
+                  class="add-to-cart py-1.5 px-6 rounded-full flex items-center font-bold"
+                >
+                  <span>+</span>
+                  <span class="ml-4">Add</span>
+                </button>
+              </div>
+            </span>
+          </div>
+        </div>
+
+        <!-- 4th item info -->
+        <div class="w-64">
+          <img class="myImg h-40 mb-4 mx-auto" src="/img/A.jpg" alt="pizza" />
+          <div class="text-center">
+            <h2 class="mb-4 text-lg">Margherita</h2>
+            <span class="size py-1 rounded-full uppercase text-xs"
+              >small
+              <div class="flex items-center justify-around mt-6">
+                <span class="font-bold text-lg">₹250</span>
+                <button
+                  class="add-to-cart py-1.5 px-6 rounded-full flex items-center font-bold"
+                >
+                  <span>+</span>
+                  <span class="ml-4">Add</span>
+                </button>
+              </div>
+            </span>
+          </div>
+        </div>
+
+        <!-- 5th item info -->
+        <div class="w-64">
+          <img class="myImg h-40 mb-4 mx-auto" src="/img/CSR.jpg" alt="pizza" />
+          <div class="text-center">
+            <h2 class="mb-4 text-lg">Margherita</h2>
+            <span class="size py-1 rounded-full uppercase text-xs"
+              >small
+              <div class="flex items-center justify-around mt-6">
+                <span class="font-bold text-lg">₹250</span>
+                <button
+                  class="add-to-cart py-1.5 px-6 rounded-full flex items-center font-bold"
+                >
+                  <span>+</span>
+                  <span class="ml-4">Add</span>
+                </button>
+              </div>
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Reviews and Comments with parallax-->
+
+    <!-- Footer -->
     <script src="/js/app.js"></script>
   </body>
 </html>
