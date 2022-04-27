@@ -16,14 +16,9 @@ app.use(expressLayouts);
 app.set("views", path.join(__dirname, "/resources/views"));
 app.set("view engine", "ejs");
 
-// routes
-app.get("/", (req, res) => {
-  res.render("home");
-});
+// routes imported
+require("./routes/web")(app);
 
-app.get("/cart", (req, res) => {
-  res.render("customer/cart");
-});
 // Listening to server
 app.listen(PORT, () => {
   console.log(`Server is running at ${PORT}`);
