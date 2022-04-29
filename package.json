@@ -4,11 +4,11 @@
   "description": "This is realtime website for Jecrc Cafeteria , bringing business online so that it will ease both the side (the vendor and the custmer)",
   "main": "index.js",
   "scripts": {
-    "serve": "node server.js",
     "dev": "nodemon server.js",
+    "start": "node server.js",
     "development": "mix",
     "watch": "npx mix watch",
-    "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
+    "production": "mix --production"
   },
   "repository": {
     "type": "git",
@@ -39,6 +39,8 @@
   },
   "homepage": "https://github.com/Kartikey0205/Project-JU_Cafeteria#readme",
   "dependencies": {
+    "axios": "^0.27.2",
+    "bcryptjs": "^2.4.3",
     "connect-mongo": "^4.6.0",
     "dotenv": "^16.0.0",
     "ejs": "^3.1.7",
@@ -46,7 +48,12 @@
     "express-ejs-layouts": "^2.5.1",
     "express-flash": "^0.0.2",
     "express-session": "^1.17.2",
-    "mongoose": "^6.3.1"
+    "moment": "^2.29.3",
+    "mongoose": "^6.3.1",
+    "noty": "^3.2.0-beta-deprecated",
+    "passport": "^0.5.2",
+    "passport-local": "^1.0.0",
+    "socket.io": "^4.3.1"
   },
   "devDependencies": {
     "cross-env": "^7.0.3",
