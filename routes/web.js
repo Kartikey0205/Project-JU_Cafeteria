@@ -1,8 +1,26 @@
+// CONTROLLERS
+
 const homeController = require("../app/http/controllers/homeController");
 const authController = require("../app/http/controllers/authController");
-const cartController = require("../app/http/controllers/customer/cartController");
+const cartController = require("../app/http/controllers/customers/cartController");
+const orderController = require("../app/http/controllers/customers/orderController");
+const adminOrderController = require("../app/http/controllers/admin/orderController");
+const adminStatusController = require("../app/http/controllers/admin/statusController");
 
+// MIDDLEWARE
+
+// GUEST Middleware is for checking that if user is logged in and then also he tries to click on login  or register route  then instead of showing him login and register page render him a home page
+const guest = require("./../app/http/middleware/guest");
+
+// AUTH Middleware is for checking whether a user is logged in or not if logged in then render what user wants otherwise redirect to login page
+const auth = require("./../app/http/middleware/auth");
+
+const admin = require("./../app/http/middleware/admin");
+
+// y function h jisme app get kr rhe  h hm server.js se
 function initRoutes(app) {
+  // GENERAL ROUTES
+
   /*
   @type       -     GET
   @route      -     /
@@ -13,20 +31,20 @@ function initRoutes(app) {
 
   /*
   @type       -     GET
-  @route      -     /cart
-  @desc       -     route for CART PAGE  of user
-  @access     -     PUBLIC
-  */
-
-  app.get("/cart", cartController().index);
-  /*
-  @type       -     GET
   @route      -     /login
   @desc       -     route for LOGIN PAGE  of user
   @access     -     PUBLIC
   @middleware -     guest
   */
-  app.get("/login", authController().login);
+  app.get("/login", guest, authController().login);
+
+  /*
+  @type       -     POST
+  @route      -     /login
+  @desc       -     route for LOGIN PAGE  of user
+  @access     -     PUBLIC
+  */
+  app.post("/login", authController().postLogin);
 
   /*
   @type       -     GET
@@ -36,7 +54,93 @@ function initRoutes(app) {
   @middleware -     guest
   */
 
-  app.get("/register", authController().register);
+  app.get("/register", guest, authController().register);
+
+  /*
+  @type       -     POST
+  @route      -     /register
+  @desc       -     route for REGISTER PAGE  of user
+  @access     -     PUBLIC
+  */
+  app.post("/register", authController().postRegister);
+
+  /*
+  @type       -     POST
+  @route      -     /logout
+  @desc       -     route for redirecting after logout
+  @access     -     PROTECTED(after login)
+  */
+
+  app.post("/logout", authController().logout);
+
+  /*
+  @type       -     GET
+  @route      -     /cart
+  @desc       -     route for CART PAGE  of user
+  @access     -     PUBLIC
+  */
+
+  app.get("/cart", cartController().index);
+
+  /*
+  @type       -     POST
+  @route      -     /update-cart
+  @desc       -     route for posting and seeing order PAGE  of user
+  @access     -     PUBLIC
+  */
+  app.post("/update-cart", cartController().update);
+
+  //CUSTOMER ROUTES
+
+  /*
+  @type       -     POST
+  @route      -     /orders
+  @desc       -     route for ordering menu items
+  @access     -     PRIVATE (for each user)
+  @middleware -     auth
+  */
+
+  app.post("/orders", auth, orderController().store);
+
+  /*
+  @type       -     GET
+  @route      -     /customer/orders
+  @desc       -     route for showing ordering details for each user
+  @access     -     PRIVATE (for each user)
+  @middleware -     auth
+  */
+
+  app.get("/customer/orders", auth, orderController().index);
+
+  /*
+  @type       -     GET
+  @route      -     /customer/orders/:id
+  @desc       -     route for showing tracking details of each user
+  @access     -     PRIVATE (for each user)
+  @middleware -     auth
+  */
+
+  app.get("/customer/orders/:id", auth, orderController().show);
+
+  //ADMIN ROUTES
+
+  /*
+  @type       -     GET
+  @route      -     /admin/orders
+  @desc       -     route for showing ordering details of user to admin
+  @access     -     PRIVATE (for each admin)
+  @middleware -     admin
+  */
+  app.get("/admin/orders", admin, adminOrderController().index);
+
+  /*
+  @type       -     POST
+  @route      -     /admin/order/status
+  @desc       -     route for showing ordering details of user to admin
+  @access     -     PRIVATE (for each admin)
+  @middleware -     admin
+  */
+  app.post("/admin/order/status", adminStatusController().update);
 }
 
 module.exports = initRoutes;
