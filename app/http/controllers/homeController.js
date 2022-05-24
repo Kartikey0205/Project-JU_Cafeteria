@@ -1,18 +1,22 @@
-// import Menu
+// Import model of Menu
 
-const Menu = require("../../models/menu");
+const Menu = require("../../models/Menu");
 
 function homeController() {
-  // Using Factory Method
   return {
-    //get home page
-    async index(req, res) {
-      const allMenus = await Menu.find();
+    //  home page rendering method
+    index(req, res) {
+      //can use async await -- make index as async
 
-      // console.log(allMenus);
-      return res.render("home", {
-        allMenus: allMenus,
-      });
+      // Menu model h aur usme database mein se pizza k menu doondh rhe h toh find query lgaya aur agr pizza milta h toh home page render pizza k sath hi
+      Menu.find()
+        .then((pizzas) => {
+          // console.log(pizzas);
+          return res.render("home", {
+            pizza: pizzas,
+          });
+        })
+        .catch(() => console.log("Error in finding"));
     },
   };
 }
