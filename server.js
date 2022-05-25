@@ -1,24 +1,27 @@
+// dot env file ko require kiya h
 require("dotenv").config();
 
-// Express Server required package
-const express = require("express");
-const ejs = require("ejs");
-const expressLayouts = require("express-ejs-layouts");
-const path = require("path");
+// sari depedencies require
+const express = require("express"); // for express server
+const ejs = require("ejs"); // templating engines
+const expressLayout = require("express-ejs-layouts"); // common layout isme jayega with layout.ejs file name
+const path = require("path"); // path to join two file-directory
 
 // Database stuff
 const mongoose = require("mongoose");
+// for creting session in express we need this
 const session = require("express-session");
+//  express-flash is used to define a flash message and render it without rendering the request
 const flash = require("express-flash");
-
 // connect-mongo is used to store session in database
 const MongoDbStore = require("connect-mongo");
+const passport = require("passport");
 
-// requiring all links that coming from env file via setup directory and my file inside it
+const Emitter = require("events");
+
 const myfile = require("./setup/myFile");
 
 const app = express();
-// Dynamic Port
 const PORT = process.env.PORT || 5500;
 
 // Database connection
@@ -28,6 +31,8 @@ mongoose
   .connect(db, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
+    // useCreateIndex: true,
+    // useFindAndModify: false,
   })
   .then(() => {
     console.log("MongoDB connected succesfully..");
@@ -36,9 +41,13 @@ mongoose
     console.log("Error is ", err);
   });
 
-// Session Config
-// for creating session always do the same
-//  Store is used for storing the session in database
+// EVENT EMITTER
+
+const eventEmitter = new Emitter();
+app.set("eventEmitter", eventEmitter);
+
+// Session Config middleware
+
 app.use(
   session({
     secret: myfile.secret,
@@ -50,26 +59,62 @@ app.use(
     cookie: {
       //  secure: true
       maxAge: 1000 * 60 * 60 * 24,
-      // maxAge: 1000 * 50,
     },
   })
 );
 
-// Use flash Middleware
+const passportInit = require("./app/config/passport");
+passportInit(passport);
+app.use(passport.initialize());
+app.use(passport.session());
+
+// using express-flash as a middleware
 app.use(flash());
 
-// Assests for MIME type accrordingly setting Content Type
 app.use(express.static("public"));
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
 
-// set Template Engine
-app.use(expressLayouts);
+app.use((req, res, next) => {
+  res.locals.session = req.session;
+  res.locals.user = req.user;
+  next();
+});
+
+//set template engine
+app.use(expressLayout);
 app.set("views", path.join(__dirname, "/resources/views"));
 app.set("view engine", "ejs");
 
-// routes imported
 require("./routes/web")(app);
 
-// Listening to server
-app.listen(PORT, () => {
-  console.log(`Server is running at ${PORT}`);
+app.use((req, res) => {
+  res.status(404).send(`<h1 style="text-align: center;
+  margin:2rem;">Oops! Page Not Found</h1>`);
+});
+
+// listening port
+const server = app.listen(PORT, () => {
+  console.log(`Listening on port ${PORT}`);
+});
+
+// Socket
+
+const io = require("socket.io")(server);
+io.on("connection", (socket) => {
+  // Join
+  socket.on("join", (roomName) => {
+    socket.join(roomName);
+  });
+});
+
+// client side Emitter
+eventEmitter.on("orderUpdated", (data) => {
+  io.to(`order_${data.id}`).emit("orderUpdated", data);
+});
+
+// Admin side Emitter
+
+eventEmitter.on("orderPlaced", (data) => {
+  io.to(`adminRoom`).emit("orderPlaced", data);
 });
