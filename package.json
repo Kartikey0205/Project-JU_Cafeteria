@@ -2,7 +2,11 @@
   "name": "ju-cafeteria",
   "version": "1.0.0",
   "description": "This is realtime website for Jecrc Cafeteria , bringing business online so that it will ease both the side (the vendor and the custmer)",
-  "main": "index.js",
+  "main": "server.js",
+  "engines": {
+    "node":"16.1.0",
+    "npm": "8.3.1"
+  },
   "scripts": {
     "dev": "nodemon server.js",
     "start": "node server.js",
